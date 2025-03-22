@@ -1,0 +1,113 @@
+﻿@model Nexus.DTOs.HospitalDTO
+@{
+    ViewData["Title"] = "Edit Hospital";
+}
+<div class="card card-body">
+    <h4>Hospital</h4>
+    <form asp-action="Edit" method="post">
+        <input type="hidden" asp-for="Id" /> <!-- Hidden field for the ID -->
+
+        <div class="form-group">
+            <div class="row m-0 p-3">
+                <div class="col-12 col-lg-2 col-md-2">
+                    <label asp-for="Name"></label>
+                </div>
+                <div class="col-12 col-lg-10 col-md-10">
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row m-0 p-3">
+                <div class="col-12 col-lg-2 col-md-2">
+                    <label asp-for="Phone"></label>
+                </div>
+                <div class="col-12 col-lg-10 col-md-10">
+                    <input asp-for="Phone" class="form-control" />
+                    <span asp-validation-for="Phone" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row m-0 p-3">
+                <div class="col-12 col-lg-2 col-md-2">
+                    <label asp-for="Address"></label>
+                </div>
+                <div class="col-12 col-lg-10 col-md-10">
+                    <input asp-for="Address" class="form-control" />
+                    <span asp-validation-for="Address" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row m-0 p-3">
+                <div class="col-12 col-lg-2 col-md-2">
+                    <label asp-for="CityId"></label>
+                </div>
+                <div class="col-12 col-lg-10 col-md-10">
+                    <input asp-for="CityId" class="form-control" />
+                    <span asp-validation-for="CityId" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row m-0 p-3">
+                <div class="col-12 col-lg-2 col-md-2">
+                    <label asp-for="NumberOfBME"></label>
+                </div>
+                <div class="col-12 col-lg-10 col-md-10">
+                    <input asp-for="NumberOfBME" class="form-control" />
+                    <span asp-validation-for="NumberOfBME" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row m-0 p-3">
+                <div class="col-12 col-lg-2 col-md-2">
+                    <label asp-for="NumberOfBeds"></label>
+                </div>
+                <div class="col-12 col-lg-10 col-md-10">
+                    <input asp-for="NumberOfBeds" class="form-control" />
+                    <span asp-validation-for="NumberOfBeds" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row m-0 p-3">
+                <div class="col-12 col-lg-2 col-md-2">
+                    <label asp-for="Email"></label>
+                </div>
+                <div class="col-12 col-lg-10 col-md-10">
+                    <input asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row m-0 p-3">
+                <div class="col-12 col-lg-2 col-md-2">
+                    <label asp-for="Password"></label>
+                </div>
+                <div class="col-12 col-lg-10 col-md-10">
+                    <input asp-for="Password" class="form-control" type="password" placeholder="Leave blank to keep current password" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="row m-0 p-3">
+            <div class="col-12 col-lg-10 offset-lg-2 col-md-10 offset-md-2">
+                <button type="submit" class="btn btn-primary mt-3">Save Changes</button>
+                <a asp-action="Index" class="btn btn-secondary mt-3">Back to List</a>
+            </div>
+        </div>
+    </form>
+</div>

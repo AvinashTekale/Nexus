@@ -1,0 +1,64 @@
+﻿@model IEnumerable<Nexus.DTOs.ContactPersonDTO>
+
+@{
+    ViewData["Title"] = "Contact Persons";
+}
+
+<div class="card">
+    <div class="card-header">
+        <h4>Contact Persons</h4>
+    </div>
+    <div class="card-body">
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Role</th>
+                    <th>
+                        <a asp-action="Create" class="btn btn-success btn-sm">
+                            <i class="fas fa-plus"></i> Add
+                        </a>
+                    </th>
+                </tr>
+            </thead>
+            @if (Model.Any())
+            {
+
+                <tbody>
+                    @foreach (var contactPerson in Model)
+                    {
+                        <tr>
+                            <td>@(Model.ToList().IndexOf(contactPerson) + 1)</td>
+                            <td>@contactPerson.Name</td>
+                            <td>@contactPerson.Phone</td>
+                            <td>@contactPerson.Email</td>
+                            <td>@contactPerson.Role</td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@contactPerson.Id" class="btn btn-warning btn-sm text-white">
+                                    <i class="fas fa-edit"></i> Edit
+                                </a>
+                                <a asp-action="Delete" asp-route-id="@contactPerson.Id" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this?');">
+                                    <i class="fas fa-trash"></i> Delete
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            }
+            else
+            {
+                <tbody>
+                    <tr>
+                        <td colspan="6">
+                            No contact persons available.
+                        </td>
+                    </tr>
+                </tbody>
+            }
+        </table>
+
+    </div>
+</div>

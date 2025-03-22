@@ -1,0 +1,67 @@
+﻿@model IEnumerable<Nexus.Entities.Equipment>
+
+<div class="card">
+    <div class="card-header">
+        <h4>Equipment</h4>
+    </div>
+    <div class="card-body">
+
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>#</th>
+                    <th>Serial Number</th> <!-- Added Serial Number -->
+                    <th>Model</th>
+                    <th>Category</th>
+                    <th>Hospital</th>
+                    <th>Description</th>
+                    <th>Location</th>
+                    <th>Importance</th>
+                    <th>Purchase Date</th>
+                    <th>Next Maintenance Date</th>
+                    <th>Next Calibration Date</th>
+                    <th>
+                        <a asp-action="Create" class="btn btn-success btn-sm">
+                            <i class="fas fa-plus"></i>
+                        </a>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Any())
+                {
+                    @foreach (var equipment in Model)
+                    {
+                        <tr>
+                            <td>@(Model.ToList().IndexOf(equipment) + 1)</td>
+                            <td>@equipment.SerialNumber</td> <!-- Display Serial Number -->
+                            <td>@equipment.EquipmentModel?.Name</td>
+                            <td>@equipment.EquipmentCategory?.Name</td>
+                            <td>@equipment.Hospital?.Name</td>
+                            <td>@equipment.Description</td>
+                            <td>@equipment.Location</td>
+                            <td>@equipment.EquipmentImportance</td>
+                            <td>@equipment.PurchaseDate.ToString("yyyy-MM-dd")</td>
+                            <td>@equipment.NextMaintenanceDate.ToString("yyyy-MM-dd")</td>
+                            <td>@equipment.NextCalibrationDate.ToString("yyyy-MM-dd")</td>
+                            <td>
+                                <a asp-action="Edit" asp-route-serialNumber="@equipment.SerialNumber" class="btn btn-warning btn-sm text-white">
+                                    <i class="fa fa-pencil"></i>
+                                </a>
+                                <a asp-action="Delete" asp-route-serialNumber="@equipment.SerialNumber" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this equipment?');">
+                                    <i class="fa fa-trash"></i>
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="12" class="text-center">No equipment found.</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,51 @@
+﻿@model IEnumerable<Nexus.Entities.EquipmentModel>
+
+<div class="card">
+    <div class="card-header">
+        <h4>Equipment Models</h4>
+    </div>
+    <div class="card-body">
+        <table class="table table-striped">
+            <thead class="thead-dark">
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Partner</th>
+                    <th>
+                        <a asp-action="Create" class="btn btn-success btn-sm">
+                            <i class="fas fa-plus"></i> Add
+                        </a>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Any())
+                {
+                    @foreach (var equipment in Model)
+                    {
+                        <tr>
+                            <td>@(Model.ToList().IndexOf(equipment) + 1)</td>
+                            <td>@equipment.Name</td>
+                            <td>@equipment.Partner?.Name</td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@equipment.Id" class="btn btn-warning btn-sm text-white">
+                                    <i class="fas fa-edit"></i> Edit
+                                </a>
+                                <a asp-action="Delete" asp-route-id="@equipment.Id" class="btn btn-danger btn-sm"
+                                   onclick="return confirm('Are you sure you want to delete this equipment?');">
+                                    <i class="fas fa-trash"></i> Delete
+                                </a>
+                            </td>
+                        </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="4" class="text-center">No model found.</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

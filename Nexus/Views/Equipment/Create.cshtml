@@ -1,0 +1,104 @@
+﻿@model Nexus.Entities.Equipment
+
+<div class="card card-body">
+    <h4>Equipment</h4>
+
+    <form asp-action="Create">
+        <div class="row g">
+            <!-- Serial Number -->
+            <div class="col-12 col-md-6 col-lg-4 p-3">
+                <label asp-for="SerialNumber" class="form-label">Serial Number</label>
+                <input asp-for="SerialNumber" class="form-control" placeholder="Please enter serial number"/>
+                <span asp-validation-for="SerialNumber" class="text-danger"></span>
+            </div>
+
+            <!-- Model -->
+            <div class="col-12 col-md-6 col-lg-4 p-3">
+                <label asp-for="EquipmentModelId" class="form-label">Select Model</label>
+                <select asp-for="EquipmentModelId" asp-items="ViewBag.EquipmentModels" class="form-control">
+                    <option value="">Select Equipment Model</option>
+                </select>
+
+                <span asp-validation-for="EquipmentModelId" class="text-danger"></span>
+            </div>
+
+            <!-- Category -->
+            <div class="col-12 col-md-6 col-lg-4 p-3">
+                <label asp-for="EquipmentCategoryId" class="form-label">Select Category</label>
+                <select asp-for="EquipmentCategoryId" asp-items="ViewBag.EquipmentCategories" class="form-control">
+                    <option value="">Select Equipment Category</option>
+                </select>
+
+                <span asp-validation-for="EquipmentCategoryId" class="text-danger"></span>
+            </div>
+
+            <!-- Department -->
+            <div class="col-12 col-md-6 col-lg-4 p-3">
+                <label asp-for="DepartmentId" class="form-label">Select Department</label>
+                <select asp-for="DepartmentId" asp-items="ViewBag.Departments" class="form-control">
+                    <option value="">Select Department</option>
+                </select>
+
+                <span asp-validation-for="DepartmentId" class="text-danger"></span>
+            </div>
+
+            <!-- Location -->
+            <div class="col-12 col-md-6 col-lg-4 p-3">
+                <label asp-for="Location" class="form-label">Location</label>
+                <input asp-for="Location" class="form-control" placeholder="Enter location" />
+                <span asp-validation-for="Location" class="text-danger"></span>
+            </div>
+
+            <!-- Importance -->
+            <div class="col-12 col-md-6 col-lg-4 p-3">
+                <label asp-for="EquipmentImportance" class="form-label">Select Importance</label>
+                <select asp-for="EquipmentImportance" class="form-control">
+                    <option value="Critical">Critical</option>
+                    <option value="Non-Critical">Non-Critical</option>
+                </select>
+                <span asp-validation-for="EquipmentImportance" class="text-danger"></span>
+            </div>
+
+            <!-- Purchase Date -->
+            <div class="col-12 col-md-6 col-lg-4 p-3">
+                <label asp-for="PurchaseDate" class="form-label">Purchase Date</label>
+                <input asp-for="PurchaseDate" class="form-control" type="date" />
+                <span asp-validation-for="PurchaseDate" class="text-danger"></span>
+            </div>
+
+            <!-- Maintenance Schedule Frequency -->
+            <div class="col-12 col-md-6 col-lg-4 p-3">
+                <label asp-for="MaintenanceScheduleFrequency" class="form-label">Maintenance Schedule Frequency</label>
+                <input asp-for="MaintenanceScheduleFrequency" class="form-control" />
+                <span asp-validation-for="MaintenanceScheduleFrequency" class="text-danger"></span>
+            </div>
+
+            <!-- Installation Date -->
+            <div class="col-12 col-md-6 col-lg-4 p-3">
+                <label asp-for="InstallationDate" class="form-label">Installation Date</label>
+                <input asp-for="InstallationDate" class="form-control" type="date" />
+                <span asp-validation-for="InstallationDate" class="text-danger"></span>
+            </div>
+
+            <!-- Description -->
+            <div class="col-12 p-3">
+                <label asp-for="Description" class="form-label">Description</label>
+                <textarea asp-for="Description" class="form-control" placeholder="Enter description"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+
+            <!-- Calibration Required -->
+            <div class="col-12 col-md-6 col-lg-4 p-3">
+                <label asp-for="CalibrationRequired" class="form-label">Calibration Required</label>
+                <input asp-for="CalibrationRequired" type="checkbox" />
+                <span asp-validation-for="CalibrationRequired" class="text-danger"></span>
+            </div>
+
+            <!-- Buttons -->
+            <div class="col-12 p-3">
+                <button type="submit" class="btn btn-primary">Save</button>
+                <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+            </div>
+        </div>
+    </form>
+</div>

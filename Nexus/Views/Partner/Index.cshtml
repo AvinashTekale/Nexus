@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Nexus.Entities.Partner>
+
+<div class="card">
+    <div class="card-header">
+        <h4>Partners</h4>
+    </div>
+    <div class="card-body">
+
+        <table class="table table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>#</th>
+                    <th>Name</th>
+                    <th>Location</th>
+                    <th>Type</th>
+                    <th>
+                        <a asp-action="Create" class="btn btn-success btn-sm">
+                            <i class="fas fa-plus"></i> Add
+                        </a>
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Any())
+                {
+                    @foreach (var partner in Model)
+                    {
+                        <tr>
+                            <td>@(Model.ToList().IndexOf(partner) + 1)</td>
+                            <td>@partner.Name</td>
+                            <td>@partner.Location</td>
+                            <td>@partner.Types</td>
+                            <td>
+                                <a asp-action="Edit" asp-route-id="@partner.Id" class="btn btn-warning btn-sm text-white"><i class="fas fa-edit"></i> Edit</a>
+                                <a asp-action="Delete" asp-route-id="@partner.Id" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure you want to delete this partner?');"><i class="fas fa-trash"></i> Delete</a>
+                            </td>
+                        </tr>
+                    }  }
+                else
+                {
+                    <tr>
+                        <td colspan="5" class="text-center">No partner found.</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

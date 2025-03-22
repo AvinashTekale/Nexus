@@ -1,0 +1,78 @@
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+/* Left menu styling */
+.left-menu {
+    background-color: #343a40;
+    color: #ffffff;
+    transition: width 0.3s ease;
+}
+
+    .left-menu .nav-link {
+        color: #dcdcdc;
+        font-size: 1rem;
+        padding: 10px 15px;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+        .left-menu .nav-link:hover {
+            background-color: #495057;
+            color: #ffffff;
+        }
+
+        .left-menu .nav-link i {
+            font-size: 1.2rem;
+        }
+
+    .left-menu.collapsed {
+        width: 60px;
+    }
+
+        .left-menu.collapsed .nav-link span {
+            display: none;
+        }
+
+        .left-menu.collapsed .nav-link i {
+            margin-right: 0;
+        }
+
+.menu-toggle {
+    color: #dcdcdc;
+    cursor: pointer;
+    margin: 10px;
+    font-size: 1.5rem;
+}
+
+    .menu-toggle:hover {
+        color: #ffffff;
+    }
+
+.left-menu{
+    overflow:hidden;
+    position:relative;
+    top:0px;
+    bottom:50px;
+}

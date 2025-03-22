@@ -1,0 +1,75 @@
+﻿@model Nexus.DTOs.BMEAccountDTO
+
+@{
+    ViewData["Title"] = "Create BME Account";
+}
+<div class="card card-body">
+    <h4>Create BME Account</h4>
+
+    <form asp-action="Create" method="post" class="form-horizontal">
+
+        <!-- Name -->
+        <div class="form-group">
+            <div class="row m-0 p-3">
+                <div class="col-12 col-lg-2 col-md-2">
+                    <label asp-for="Name"></label>
+                </div>
+                <div class="col-12 col-lg-10 col-md-10">
+                    <input asp-for="Name" class="form-control" placeholder="Enter BME name" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Phone -->
+        <div class="form-group">
+            <div class="row m-0 p-3">
+                <div class="col-12 col-lg-2 col-md-2">
+                    <label asp-for="Phone"></label>
+                </div>
+                <div class="col-12 col-lg-10 col-md-10">
+                    <input asp-for="Phone" class="form-control" placeholder="Enter phone number" />
+                    <span asp-validation-for="Phone" class="text-danger"></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Email -->
+        <div class="form-group">
+            <div class="row m-0 p-3">
+                <div class="col-12 col-lg-2 col-md-2">
+                    <label asp-for="Email"></label>
+                </div>
+                <div class="col-12 col-lg-10 col-md-10">
+                    <input asp-for="Email" class="form-control" placeholder="Enter email address" />
+                </div>
+            </div>
+        </div>
+
+        <!-- Password -->
+        <div class="form-group">
+            <div class="row m-0 p-3">
+                <div class="col-12 col-lg-2 col-md-2">
+                    <label asp-for="Password"></label>
+                </div>
+                <div class="col-12 col-lg-10 col-md-10">
+                    <input asp-for="Password" class="form-control" type="password" placeholder="Enter password" />
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="row m-0 p-3">
+                <div class="col-12 col-lg-2 col-md-2">
+                    <!-- Spacer for alignment -->
+                </div>
+                <div class="col-12 col-lg-10 col-md-10">
+                    <button type="submit" class="btn btn-primary">Create</button>
+                    <a asp-action="Index" class="btn btn-secondary">Cancel</a>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

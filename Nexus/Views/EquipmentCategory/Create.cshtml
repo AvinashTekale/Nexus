@@ -1,0 +1,24 @@
+﻿@model Nexus.Entities.EquipmentCategory
+
+<div class="card">
+    <div class="card-header">
+        <h4>Create Equipment Category</h4>
+    </div>
+    <div class="card-body">
+        <form asp-action="Create" method="post">
+            <div class="form-group">
+                <label for="Name">Category Name</label>
+                <input asp-for="Name" class="form-control" placeholder="Enter equipment category name" />
+            </div>
+
+            <div class="form-group mt-3">
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-save"></i> Save
+                </button>
+                <a asp-action="Index" class="btn btn-secondary">
+                    <i class="fas fa-arrow-left"></i> Cancel
+                </a>
+            </div>
+        </form>
+    </div>
+</div>
