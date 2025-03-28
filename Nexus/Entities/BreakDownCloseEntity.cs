@@ -30,7 +30,7 @@ namespace Nexus.Entities
         public bool PartRequired { get; set; } // Yes / No
 
         // One Breakdown Close can have multiple parts
-        public ICollection<PartDetailEntity> PartDetails { get; set; }
+        //public ICollection<PartDetailEntity> PartDetails { get; set; }
 
         [MaxLength(500)]
         public string FollowUpAction { get; set; } // Any additional actions required

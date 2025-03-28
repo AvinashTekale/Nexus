@@ -27,7 +27,7 @@ namespace Nexus.Data
         public DbSet<InstallationBaseEntity> InstallationBases { get; set; }
         public DbSet<BreakDownOpenEntity> BreakDownsOpen { get; set; }
         public DbSet<BreakDownCloseEntity> BreakDownsClose { get; set; }
-        public DbSet<PartDetailEntity> PartDetails { get; set; }
+        //public DbSet<PartDetailEntity> PartDetails { get; set; }
         public DbSet<ContractOrderEntity> ContractOrders { get; set; }
         public DbSet<PMEntity> PMs { get; set; }
         public DbSet<CalibrationEntity> Calibrations { get; set; }

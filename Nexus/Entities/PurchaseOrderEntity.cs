@@ -28,6 +28,16 @@ namespace Nexus.Entities
         public DateTime PurchaseDate { get; set; }  // Purchase date
 
         [Required]
+        public DateTime DateCreated { get; set; } = DateTime.UtcNow;  // Record creation date
+
+        public DateTime? DateModified { get; set; }  // Record last modification date (nullable)
+
+        [Required]
+        public int CreatedBy { get; set; }  // User who created the record
+
+        public int? ModifiedBy { get; set; }  // User who last modified the record (nullable)
+
+        [Required]
         [MaxLength(50)]
         public string SerialNumber { get; set; }  // Unique Serial Number
 
