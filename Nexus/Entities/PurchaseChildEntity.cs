@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Nexus.Entities
 {
+    [Table("PurchaseChildEntities")] // Explicit table name to match expected schema
     public class PurchaseChildEntity
     {
         [Key]
@@ -11,8 +12,7 @@ namespace Nexus.Entities
 
         [Required]
         public int PurchaseId { get; set; } // Foreign Key to Purchase Table
-
-        [ForeignKey("PurchaseId")]
+        [ForeignKey(nameof(PurchaseId))]
         public virtual PurchaseOrderEntity PurchaseOrder { get; set; }
 
         [Required]
@@ -21,14 +21,12 @@ namespace Nexus.Entities
 
         [Required]
         public int ModelId { get; set; } // Foreign Key to Model Table
-
-        [ForeignKey("ModelId")]
+        [ForeignKey(nameof(ModelId))]
         public virtual EquipmentModel Model { get; set; }
 
         [Required]
         public int CategoryId { get; set; } // Foreign Key to Category Table
-
-        [ForeignKey("CategoryId")]
+        [ForeignKey(nameof(CategoryId))]
         public virtual EquipmentCategory Category { get; set; }
 
         [Required]
@@ -37,14 +35,12 @@ namespace Nexus.Entities
 
         [Required]
         public int ServiceContactId { get; set; } // Foreign Key to Service Contact
-
-        [ForeignKey("ServiceContactId")]
+        [ForeignKey(nameof(ServiceContactId))]
         public virtual ContactPerson ServiceContact { get; set; }
 
         [Required]
         public int SalesContactId { get; set; } // Foreign Key to Sales Contact
-
-        [ForeignKey("SalesContactId")]
+        [ForeignKey(nameof(SalesContactId))]
         public virtual ContactPerson SalesContact { get; set; }
 
         public DateTime WarrantyStart { get; set; }
@@ -54,8 +50,7 @@ namespace Nexus.Entities
         public DateTime DateModified { get; set; } = DateTime.UtcNow;
 
         [Required]
-        public string CreatedBy { get; set; } // User who created
-
-        public string ModifiedBy { get; set; } // User who last modified
+        public int CreatedBy { get; set; } // User who created
+        public int? ModifiedBy { get; set; } // User who last modified
     }
 }

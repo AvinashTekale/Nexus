@@ -37,36 +37,6 @@ namespace Nexus.Entities
 
         public int? ModifiedBy { get; set; }  // User who last modified the record (nullable)
 
-        [Required]
-        [MaxLength(50)]
-        public string SerialNumber { get; set; }  // Unique Serial Number
-
-        [Required]
-        [MaxLength(100)]
-        public string Model { get; set; }  // Select or enter manually
-
-        [Required]
-        [MaxLength(100)]
-        public string Category { get; set; }  // Select or enter manually
-
-        [Required]
-        [Column(TypeName = "decimal(18,2)")]
-        public decimal Price { get; set; }  // Individual price
-
-        [Required]
-        [MaxLength(100)]
-        public string ServiceContact { get; set; }  // Service contact person
-
-        [Required]
-        [MaxLength(100)]
-        public string SalesContact { get; set; }  // Sales contact person
-
-        [Required]
-        public DateTime WarrantyStartDate { get; set; }  // Warranty start date
-
-        [Required]
-        public DateTime WarrantyEndDate { get; set; }  // Warranty end date
-
         public ICollection<InstallationBaseEntity> InstallationBases { get; set; } = new List<InstallationBaseEntity>();
     }
 }

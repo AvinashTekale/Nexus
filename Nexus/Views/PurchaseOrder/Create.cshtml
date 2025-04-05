@@ -1,0 +1,224 @@
+﻿@model Nexus.Controllers.PurchaseOrderViewModel
+
+@{
+    ViewData["Title"] = "Create Purchase Order";
+    var today = DateTime.UtcNow.ToString("yyyy-MM-dd");
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"]</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa; /* Light grey background */
+            padding: 20px;
+        }
+
+        .form-section {
+            background-color: #fff;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .item-table {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin-top: 15px;
+        }
+
+            .item-table th, .item-table td {
+                padding: 12px 15px;
+                text-align: left;
+                border-bottom: 1px solid #dee2e6;
+            }
+
+            .item-table th {
+                background-color: #e9ecef; /* Light grey header */
+                font-weight: 600;
+            }
+
+            .item-table tr:last-child td {
+                border-bottom: none;
+            }
+
+        .add-row-btn, .remove-row-btn {
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            border: none;
+        }
+
+        .add-row-btn {
+            background-color: #28a745; /* Green */
+            color: #fff;
+            margin-top: 10px;
+        }
+
+            .add-row-btn:hover {
+                background-color: #218838;
+            }
+
+        .remove-row-btn {
+            background-color: #dc3545; /* Red */
+            color: #fff;
+        }
+
+            .remove-row-btn:hover {
+                background-color: #c82333;
+            }
+
+        .form-label {
+            font-weight: 500;
+        }
+
+        .form-control {
+            border-radius: 5px;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+            .btn-primary:hover {
+                background-color: #0056b3;
+                border-color: #0056b3;
+            }
+
+        .btn-secondary {
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>@ViewData["Title"]</h2>
+        <form asp-action="Create" method="post">
+            <div class="form-section">
+                <h3>Purchase Order Details</h3>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label class="form-label">PO Number</label>
+                            <input asp-for="PurchaseOrder.PONumber" class="form-control" placeholder="Enter PO number" required />
+                            <span asp-validation-for="PurchaseOrder.PONumber" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Partner</label>
+                            <input asp-for="PurchaseOrder.Partner" class="form-control" placeholder="Enter partner name" required />
+                            <span asp-validation-for="PurchaseOrder.Partner" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Purchase Price</label>
+                            <input asp-for="PurchaseOrder.PurchasePrice" type="number" step="0.01" class="form-control" placeholder="Enter purchase price" required />
+                            <span asp-validation-for="PurchaseOrder.PurchasePrice" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Purchase Date</label>
+                            <input asp-for="PurchaseOrder.PurchaseDate" type="date" class="form-control" value="@today" required />
+                            <span asp-validation-for="PurchaseOrder.PurchaseDate" class="text-danger"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Created By</label>
+                            <input asp-for="PurchaseOrder.CreatedBy" type="number" class="form-control" placeholder="Enter user ID" required />
+                            <span asp-validation-for="PurchaseOrder.CreatedBy" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-section">
+                <h3>Child Equipment Items</h3>
+                <table class="item-table table" id="childItemsTable">
+                    <thead>
+                        <tr>
+                            <th>Serial Number</th>
+                            <th>Model ID</th>
+                            <th>Category ID</th>
+                            <th>Price</th>
+                            <th>Service Contact ID</th>
+                            <th>Sales Contact ID</th>
+                            <th>Warranty Start</th>
+                            <th>Warranty End</th>
+                            <th>Created By</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody id="childItemsBody">
+                        @if (Model.ChildEntities != null && Model.ChildEntities.Any())
+                        {
+                            for (int i = 0; i < Model.ChildEntities.Count; i++)
+                            {
+                                <tr class="child-item">
+                                    <td><input name="ChildEntities[@i].SerialNumber" class="form-control" value="@Model.ChildEntities[i].SerialNumber" required /></td>
+                                    <td><input name="ChildEntities[@i].ModelId" type="number" class="form-control" value="@Model.ChildEntities[i].ModelId" required /></td>
+                                    <td><input name="ChildEntities[@i].CategoryId" type="number" class="form-control" value="@Model.ChildEntities[i].CategoryId" required /></td>
+                                    <td><input name="ChildEntities[@i].Price" type="number" step="0.01" class="form-control" value="@Model.ChildEntities[i].Price" required /></td>
+                                    <td><input name="ChildEntities[@i].ServiceContactId" type="number" class="form-control" value="@Model.ChildEntities[i].ServiceContactId" required /></td>
+                                    <td><input name="ChildEntities[@i].SalesContactId" type="number" class="form-control" value="@Model.ChildEntities[i].SalesContactId" required /></td>
+                                    <td><input name="ChildEntities[@i].WarrantyStart" type="date" class="form-control" value="@(Model.ChildEntities[i].WarrantyStart != default(DateTime) ? Model.ChildEntities[i].WarrantyStart.ToString("yyyy-MM-dd") : today)" required /></td>
+                                    <td><input name="ChildEntities[@i].WarrantyEnd" type="date" class="form-control" value="@(Model.ChildEntities[i].WarrantyEnd != default(DateTime) ? Model.ChildEntities[i].WarrantyEnd.ToString("yyyy-MM-dd") : today)" required /></td>
+                                    <td><input name="ChildEntities[@i].CreatedBy" class="form-control" value="@Model.ChildEntities[i].CreatedBy" required /></td>
+                                    <td><button type="button" class="remove-row-btn">Remove</button></td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+                <button type="button" class="add-row-btn" id="addChildItemBtn">Add Row</button>
+            </div>
+
+            <div class="mb-3">
+                <button type="submit" class="btn btn-primary">Save</button>
+                <a href="@Url.Action("Index")" class="btn btn-secondary">Cancel</a>
+            </div>
+        </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            let childItemIndex = @((Model.ChildEntities != null ? Model.ChildEntities.Count : 0));
+            const today = '@today';
+
+            $('#addChildItemBtn').click(function () {
+                const newRow = `
+                    <tr class="child-item">
+                        <td><input name="ChildEntities[${childItemIndex}].SerialNumber" class="form-control" required /></td>
+                        <td><input name="ChildEntities[${childItemIndex}].ModelId" type="number" class="form-control" required /></td>
+                        <td><input name="ChildEntities[${childItemIndex}].CategoryId" type="number" class="form-control" required /></td>
+                        <td><input name="ChildEntities[${childItemIndex}].Price" type="number" step="0.01" class="form-control" required /></td>
+                        <td><input name="ChildEntities[${childItemIndex}].ServiceContactId" type="number" class="form-control" required /></td>
+                        <td><input name="ChildEntities[${childItemIndex}].SalesContactId" type="number" class="form-control" required /></td>
+                        <td><input name="ChildEntities[${childItemIndex}].WarrantyStart" type="date" class="form-control" value="${today}" required /></td>
+                        <td><input name="ChildEntities[${childItemIndex}].WarrantyEnd" type="date" class="form-control" value="${today}" required /></td>
+                        <td><input name="ChildEntities[${childItemIndex}].CreatedBy" class="form-control" required /></td>
+                        <td><button type="button" class="remove-row-btn">Remove</button></td>
+                    </tr>
+                `;
+                $('#childItemsBody').append(newRow);
+                childItemIndex++;
+            });
+
+            $(document).on('click', '.remove-row-btn', function () {
+                $(this).closest('tr').remove();
+            });
+        });
+    </script>
+
+    @section Scripts {
+        <partial name="_ValidationScriptsPartial" />
+    }
+</body>
+</html>

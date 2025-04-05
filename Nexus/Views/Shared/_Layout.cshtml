@@ -9,12 +9,12 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Nexus.styles.css" asp-append-version="true" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://kit.fontawesome.com/76b65a4798.js" crossorigin="anonymous"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!-- Font Awesome CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet" />
     <!-- jsvectormap css -->
     <link href="~/assets/libs/jsvectormap/jsvectormap.min.css" rel="stylesheet" />
-    <!--Swiper slider css-->
+    <!-- Swiper slider css -->
     <link href="~/assets/libs/swiper/swiper-bundle.min.css" rel="stylesheet" />
     <!-- Layout config Js -->
     <script src="~/assets/js/layout.js"></script>
@@ -22,9 +22,9 @@
     <link href="~/assets/css/bootstrap.min.css" rel="stylesheet" />
     <!-- Icons Css -->
     <link href="~/assets/css/icons.min.css" rel="stylesheet" />
-    <!-- App Css-->
+    <!-- App Css -->
     <link href="~/assets/css/app.min.css" rel="stylesheet" />
-    <!-- custom Css-->
+    <!-- Custom Css -->
     <link href="~/assets/css/custom.min.css" rel="stylesheet" />
     <!-- Alertify.js CSS -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/css/alertify.min.css" />
@@ -33,17 +33,19 @@
     <!-- Alertify.js JavaScript -->
     <script src="https://cdn.jsdelivr.net/npm/alertifyjs@1.13.1/build/alertify.min.js"></script>
 
-    <!-- Add Custom CSS for Sidebar Toggle and Logo -->
+    <!-- Custom CSS for Enhanced Top Bar and Layout -->
     <style>
-        /* Sidebar fixed position */
+        /* Sidebar fixed position with color */
         .app-menu.navbar-menu {
             position: fixed;
             top: 0;
             left: 0;
-            height: 100vh; /* Full viewport height */
-            width: 300px; /* Increased width from 250px to 300px */
+            height: 100vh;
+            width: 300px;
+            background-color: #2a3042;
+            color: #ffffff;
             transition: all 0.3s ease-in-out;
-            z-index: 1000; /* Ensure sidebar stays above other elements */
+            z-index: 1000;
         }
 
             /* Collapsed state */
@@ -53,11 +55,23 @@
                 visibility: hidden;
             }
 
+        /* Sidebar navigation items */
+        .navbar-nav .nav-item .nav-link {
+            color: #ffffff !important;
+        }
+
+            .navbar-nav .nav-item .nav-link:hover,
+            .navbar-nav .nav-item .nav-link.active {
+                background-color: #3b4252;
+                color: #ffffff !important;
+            }
+
         /* Main content adjustments */
         .main-content {
             transition: all 0.3s ease-in-out;
-            margin-left: 300px; /* Match the sidebar width */
-            width: calc(100% - 300px); /* Adjust width to fit remaining space */
+            margin-left: 300px;
+            width: calc(100% - 300px);
+            background-color: #f8f9fa;
         }
 
         /* Main content when sidebar is collapsed */
@@ -66,84 +80,231 @@
             width: 100% !important;
         }
 
-        /* Ensure page-topbar doesn't overlap with fixed sidebar */
+        /* Enhanced top bar with gradient */
         #page-topbar {
-            margin-left: 300px; /* Match the sidebar width */
+            position: fixed;
+            top: 0;
+            left: 300px;
+            width: calc(100% - 300px);
+            height: 70px;
+            background: linear-gradient(90deg, #2c3e50, #3498db);
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.3);
+            z-index: 1001;
             transition: all 0.3s ease-in-out;
+            padding: 0 20px;
+            display: flex;
+            align-items: center;
         }
 
         /* Adjust page-topbar when sidebar is collapsed */
         .sidebar-collapsed #page-topbar {
-            margin-left: 0 !important;
+            left: 0 !important;
             width: 100% !important;
         }
 
-        /* Hamburger icon animation */
-        .topnav-hamburger-icon .hamburger-icon {
-            position: relative;
-            width: 25px;
-            height: 20px;
-            cursor: pointer;
+        /* Layout width container */
+        .layout-width {
+            width: 100%;
+            background: transparent;
         }
 
-            .topnav-hamburger-icon .hamburger-icon span {
-                position: absolute;
-                width: 100%;
-                height: 2px;
-                background: #333; /* Adjust color to match your theme */
-                transition: all 0.3s ease-in-out;
-            }
-
-                .topnav-hamburger-icon .hamburger-icon span:nth-child(1) {
-                    top: 0;
-                }
-
-                .topnav-hamburger-icon .hamburger-icon span:nth-child(2) {
-                    top: 9px;
-                }
-
-                .topnav-hamburger-icon .hamburger-icon span:nth-child(3) {
-                    top: 18px;
-                }
-
-        .topnav-hamburger-icon.open .hamburger-icon span:nth-child(1) {
-            transform: rotate(45deg);
-            top: 9px;
-        }
-
-        .topnav-hamburger-icon.open .hamburger-icon span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .topnav-hamburger-icon.open .hamburger-icon span:nth-child(3) {
-            transform: rotate(-45deg);
-            top: 9px;
-        }
-
-        /* Logo styling in the header */
-        .header-logo {
-            display: inline-block;
-            margin-right: 15px; /* Space between logo and hamburger/search */
-        }
-
-            .header-logo img {
-                max-height: 60px; /* Logo size */
-                width: auto;
-            }
-
-        /* Ensure the header layout adjusts properly */
-        .navbar-header .d-flex {
+        /* Header container */
+        .navbar-header {
+            display: flex;
             align-items: center;
+            justify-content: space-between; /* Ensures proper spacing */
+            height: 100%;
+            width: 100%;
+            padding: 0 15px;
+            background: transparent;
         }
 
-        /* Adjust user dropdown styling after removing the image */
-        .topbar-user .btn {
-            padding: 5px 10px;
+        /* Left section with logo and hamburger */
+        .d-flex.align-items-center {
+            background: transparent;
         }
 
-        .topbar-user .user-name-text,
-        .topbar-user .user-name-sub-text {
-            display: inline-block !important; /* Ensure the name and role are always visible */
+        /* Logo styling */
+        .header-logo img {
+            max-height: 50px;
+            width: auto;
+            margin-right: 20px;
+            transition: opacity 0.3s ease;
+        }
+
+            .header-logo img:hover {
+                opacity: 0.8;
+            }
+
+        /* Hamburger icon */
+        .topnav-hamburger-icon {
+            margin-right: 15px;
+            cursor: pointer;
+            background: transparent;
+        }
+
+            .topnav-hamburger-icon .hamburger-icon {
+                position: relative;
+                width: 25px;
+                height: 20px;
+            }
+
+                .topnav-hamburger-icon .hamburger-icon span {
+                    position: absolute;
+                    width: 100%;
+                    height: 2px;
+                    background: #ffffff;
+                    transition: all 0.3s ease-in-out;
+                }
+
+                    .topnav-hamburger-icon .hamburger-icon span:nth-child(1) {
+                        top: 0;
+                    }
+
+                    .topnav-hamburger-icon .hamburger-icon span:nth-child(2) {
+                        top: 9px;
+                    }
+
+                    .topnav-hamburger-icon .hamburger-icon span:nth-child(3) {
+                        top: 18px;
+                    }
+
+            .topnav-hamburger-icon.open .hamburger-icon span:nth-child(1) {
+                transform: rotate(45deg);
+                top: 9px;
+            }
+
+            .topnav-hamburger-icon.open .hamburger-icon span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .topnav-hamburger-icon.open .hamburger-icon span:nth-child(3) {
+                transform: rotate(-45deg);
+                top: 9px;
+            }
+
+        /* Search bar - FIXED STYLING */
+        .app-search {
+            margin-left: 20px;
+            position: relative;
+            max-width: 300px;
+            flex-grow: 0;
+            background: transparent;
+        }
+
+            .app-search .form-control {
+                border: none;
+                background-color: rgba(255, 255, 255, 0.95);
+                border-radius: 25px;
+                padding: 10px 40px 10px 20px;
+                width: 100%;
+                color: #2c3e50;
+                box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+                transition: box-shadow 0.3s, background-color 0.3s;
+            }
+
+                .app-search .form-control:focus {
+                    box-shadow: 0 0 8px rgba(52, 152, 219, 0.5);
+                    background-color: #ffffff;
+                    outline: none;
+                }
+
+            .app-search .search-widget-icon {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                right: 15px;
+                color: #2c3e50;
+                font-size: 18px;
+                z-index: 2;
+                transition: color 0.3s;
+            }
+
+            .app-search .search-widget-icon-close {
+                right: 35px;
+            }
+
+            .app-search .search-widget-icon:hover {
+                color: #3498db;
+            }
+
+            /* Dropdown styling for search */
+            .app-search .dropdown-menu {
+                background-color: #ffffff;
+                border: none;
+                border-radius: 10px;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            }
+
+        /* User dropdown */
+        .topbar-user {
+            margin-left: auto; /* Pushes to the rightmost end */
+            background: transparent;
+        }
+
+            .topbar-user .btn {
+                padding: 10px 20px;
+                color: #ffffff;
+                background-color: rgba(255, 255, 255, 0.1);
+                border-radius: 20px;
+                border: 1px solid rgba(255, 255, 255, 0.2);
+                display: flex;
+                align-items: center;
+                transition: background-color 0.3s, color 0.3s;
+            }
+
+                .topbar-user .btn:hover {
+                    background-color: rgba(255, 255, 255, 0.2);
+                    color: #ffffff;
+                }
+
+            .topbar-user .user-name-text,
+            .topbar-user .user-name-sub-text {
+                display: inline-block !important;
+                color: #ffffff;
+                margin-left: 10px;
+                white-space: nowrap;
+                font-size: 14px;
+            }
+
+            .topbar-user .dropdown-menu {
+                min-width: 220px;
+                right: 0;
+                left: auto;
+                background-color: #ffffff;
+                border: none;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+                border-radius: 10px;
+                padding: 10px 0;
+            }
+
+                .topbar-user .dropdown-menu .dropdown-header {
+                    color: #2c3e50;
+                    padding: 12px 20px;
+                    font-weight: 500;
+                    font-size: 14px;
+                    background-color: #f8f9fa;
+                    border-bottom: 1px solid #e9ecef;
+                }
+
+                .topbar-user .dropdown-menu .dropdown-item {
+                    color: #2c3e50;
+                    padding: 10px 20px;
+                    font-size: 14px;
+                    transition: background-color 0.3s;
+                }
+
+                    .topbar-user .dropdown-menu .dropdown-item:hover {
+                        background-color: #f1f5f7;
+                    }
+
+                    .topbar-user .dropdown-menu .dropdown-item i {
+                        margin-right: 10px;
+                    }
+
+        /* Adjust main content padding to account for fixed header */
+        .page-content {
+            padding-top: 80px;
         }
     </style>
 </head>
@@ -174,44 +335,37 @@
                             <form class="app-search d-none d-md-block">
                                 <div class="position-relative">
                                     <input type="text" class="form-control" placeholder="Search..." autocomplete="off" id="search-options" value="">
-                                    <span class="mdi mdi-magnify search-widget-icon"></span>
-                                    <span class="mdi mdi-close-circle search-widget-icon search-widget-icon-close d-none" id="search-close-options"></span>
+                                    <i class="fas fa-search search-widget-icon"></i>
+                                    <i class="fas fa-times-circle search-widget-icon search-widget-icon-close d-none" id="search-close-options"></i>
                                 </div>
                                 <div class="dropdown-menu dropdown-menu-lg" id="search-dropdown">
                                     <div data-simplebar style="max-height: 320px;">
-                                        <!-- item-->
                                         <div class="dropdown-header">
                                             <h6 class="text-overflow text-muted mb-0 text-uppercase">Recent Searches</h6>
                                         </div>
                                         <div class="dropdown-item bg-transparent text-wrap">
-                                            <a href="index.html" class="btn btn-soft-secondary btn-sm rounded-pill">how to setup <i class="mdi mdi-magnify ms-1"></i></a>
-                                            <a href="index.html" class="btn btn-soft-secondary btn-sm rounded-pill">buttons <i class="mdi mdi-magnify ms-1"></i></a>
+                                            <a href="index.html" class="btn btn-soft-secondary btn-sm rounded-pill">how to setup <i class="fas fa-search ms-1"></i></a>
+                                            <a href="index.html" class="btn btn-soft-secondary btn-sm rounded-pill">buttons <i class="fas fa-search ms-1"></i></a>
                                         </div>
-                                        <!-- item-->
                                         <div class="dropdown-header mt-2">
                                             <h6 class="text-overflow text-muted mb-1 text-uppercase">Pages</h6>
                                         </div>
-                                        <!-- item-->
                                         <a href="javascript:void(0);" class="dropdown-item notify-item">
                                             <i class="ri-bubble-chart-line align-middle fs-18 text-muted me-2"></i>
                                             <span>Analytics Dashboard</span>
                                         </a>
-                                        <!-- item-->
                                         <a href="javascript:void(0);" class="dropdown-item notify-item">
                                             <i class="ri-lifebuoy-line align-middle fs-18 text-muted me-2"></i>
                                             <span>Help Center</span>
                                         </a>
-                                        <!-- item-->
                                         <a href="javascript:void(0);" class="dropdown-item notify-item">
                                             <i class="ri-user-settings-line align-middle fs-18 text-muted me-2"></i>
                                             <span>My account settings</span>
                                         </a>
-                                        <!-- item-->
                                         <div class="dropdown-header mt-2">
                                             <h6 class="text-overflow text-muted mb-2 text-uppercase">Members</h6>
                                         </div>
                                         <div class="notification-list">
-                                            <!-- item -->
                                             <a href="javascript:void(0);" class="dropdown-item notify-item py-2">
                                                 <div class="d-flex">
                                                     <img src="assets/images/users/avatar-2.jpg" class="me-3 rounded-circle avatar-xs" alt="user-pic">
@@ -221,7 +375,6 @@
                                                     </div>
                                                 </div>
                                             </a>
-                                            <!-- item -->
                                             <a href="javascript:void(0);" class="dropdown-item notify-item py-2">
                                                 <div class="d-flex">
                                                     <img src="assets/images/users/avatar-3.jpg" class="me-3 rounded-circle avatar-xs" alt="user-pic">
@@ -231,7 +384,6 @@
                                                     </div>
                                                 </div>
                                             </a>
-                                            <!-- item -->
                                             <a href="javascript:void(0);" class="dropdown-item notify-item py-2">
                                                 <div class="d-flex">
                                                     <img src="assets/images/users/avatar-5.jpg" class="me-3 rounded-circle avatar-xs" alt="user-pic">
@@ -254,33 +406,33 @@
                     <div class="d-flex align-items-center">
                         @if (httpContextAccessor.HttpContext?.Session.GetString("UserRole") != null)
                         {
+                            var userName = httpContextAccessor.HttpContext?.Session.GetString("Name") ?? "Guest";
+                            var userRole = httpContextAccessor.HttpContext?.Session.GetString("UserRole") ?? "Unknown";
+
                             <div class="dropdown ms-sm-3 header-item topbar-user">
                                 <button type="button" class="btn" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span class="d-flex align-items-center">
-                                        <!-- Removed the user profile image -->
-                                        <span class="text-start ms-xl-2">
-                                            <!-- Dynamically display the logged-in user's name -->
-                                            <span class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">
-                                                @httpContextAccessor.HttpContext?.Session.GetString("Name")
-                                            </span>
-                                            <!-- Optionally display the user's role -->
-                                            <span class="d-none d-xl-block ms-1 fs-12 user-name-sub-text">
-                                                @httpContextAccessor.HttpContext?.Session.GetString("UserRole")
-                                            </span>
+                                        <span class="text-start">
+                                            <span class="d-inline-block fw-medium user-name-text">@userName</span>
+                                            <span class="d-inline-block ms-1 fs-12 user-name-sub-text">(@userRole)</span>
                                         </span>
+                                        <i class="fas fa-chevron-down ms-2"></i>
                                     </span>
                                 </button>
                                 <div class="dropdown-menu dropdown-menu-end">
-                                    <!-- Update the welcome message with the dynamic user name -->
-                                    <h6 class="dropdown-header">Welcome @httpContextAccessor.HttpContext?.Session.GetString("Name")!</h6>
-                                    <a class="dropdown-item" href="pages-profile.html"><i class="mdi mdi-account-circle text-muted fs-16 align-middle me-1"></i> <span class="align-middle">Profile</span></a>
-                                    <a class="dropdown-item" href="pages-profile-settings.html"><span class="badge bg-success-subtle text-success mt-1 float-end">New</span><i class="mdi mdi-cog-outline text-muted fs-16 align-middle me-1"></i> <span class="align-middle">Settings</span></a>
+                                    <h6 class="dropdown-header">Welcome @userName!</h6>
+                                    <a class="dropdown-item" href="pages-profile.html"><i class="fas fa-user-circle text-muted fs-16 align-middle me-1"></i> <span class="align-middle">Profile</span></a>
+                                    <a class="dropdown-item" href="pages-profile-settings.html"><span class="badge bg-success-subtle text-success mt-1 float-end">New</span><i class="fas fa-cog text-muted fs-16 align-middle me-1"></i> <span class="align-middle">Settings</span></a>
                                     <a class="dropdown-item" href="/auth/logout" onclick="return confirm('Do you really want to logout?');">
-                                        <i class="mdi mdi-logout text-muted fs-16 align-middle me-1"></i>
+                                        <i class="fas fa-sign-out-alt text-muted fs-16 align-middle me-1"></i>
                                         <span class="align-middle" data-key="t-logout">Logout</span>
                                     </a>
                                 </div>
                             </div>
+                        }
+                        else
+                        {
+                            <span class="text-white">Guest</span>
                         }
                     </div>
                 </div>
@@ -367,6 +519,59 @@
                                                         </a>
                                                     </li>
                                                     <li class="nav-item">
+                                                        <a class="nav-link menu-link" asp-area="" asp-controller="PurchaseOrder" asp-action="Index">
+                                                            <i class="ri-shopping-cart-line"></i> <span data-key="t-widgets">Manage Purchase Orders</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link menu-link" asp-area="" asp-controller="User" asp-action="Settings">
+                                                            <i class="ri-settings-3-line"></i> <span data-key="t-widgets">Settings</span>
+                                                        </a>
+                                                    </li>
+                                                }
+                                                else if (httpContextAccessor.HttpContext?.Session.GetString("UserRole") == "BME")
+                                                {
+                                                    <li class="nav-item">
+                                                        <a class="nav-link menu-link" asp-area="" asp-controller="UserDashboard" asp-action="Index">
+                                                            <i class="ri-line-chart-line"></i> <span data-key="t-widgets">Dashboard</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link menu-link" asp-area="" asp-controller="Partner" asp-action="Index">
+                                                            <i class="ri-hand-heart-line"></i> <span data-key="t-widgets">Manage Partners</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link menu-link" asp-area="" asp-controller="ContactPerson" asp-action="Index">
+                                                            <i class="ri-contacts-line"></i> <span data-key="t-widgets">Manage Contact Person</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link menu-link" asp-area="" asp-controller="Department" asp-action="Index">
+                                                            <i class="ri-building-line"></i> <span data-key="t-widgets">Manage Departments</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link menu-link" asp-area="" asp-controller="EquipmentModel" asp-action="Index">
+                                                            <i class="ri-layout-line"></i> <span data-key="t-widgets">Manage Models</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link menu-link" asp-area="" asp-controller="EquipmentCategory" asp-action="Index">
+                                                            <i class="ri-list-check"></i> <span data-key="t-widgets">Manage Categories</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link menu-link" asp-area="" asp-controller="Equipment" asp-action="Index">
+                                                            <i class="ri-tools-line"></i> <span data-key="t-widgets">Manage Equipments</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link menu-link" asp-area="" asp-controller="PurchaseOrder" asp-action="Index">
+                                                            <i class="ri-shopping-cart-line"></i> <span data-key="t-widgets">Manage Purchase Orders</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="nav-item">
                                                         <a class="nav-link menu-link" asp-area="" asp-controller="User" asp-action="Settings">
                                                             <i class="ri-settings-3-line"></i> <span data-key="t-widgets">Settings</span>
                                                         </a>
@@ -407,6 +612,11 @@
                                                     <li class="nav-item">
                                                         <a class="nav-link menu-link" asp-area="" asp-controller="Equipment" asp-action="Index">
                                                             <i class="ri-tools-line"></i> <span data-key="t-widgets">Manage Equipments</span>
+                                                        </a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link menu-link" asp-area="" asp-controller="PurchaseOrder" asp-action="Index">
+                                                            <i class="ri-shopping-cart-line"></i> <span data-key="t-widgets">Manage Purchase Orders</span>
                                                         </a>
                                                     </li>
                                                     <li class="nav-item">
@@ -458,7 +668,7 @@
     <!-- Vector map-->
     <script src="~/assets/libs/jsvectormap/jsvectormap.min.js"></script>
     <script src="~/assets/libs/jsvectormap/maps/world-merc.js"></script>
-    <!--Swiper slider js-->
+    <!-- Swiper slider js -->
     <script src="~/assets/libs/swiper/swiper-bundle.min.js"></script>
     <!-- Dashboard init -->
     <script src="~/assets/js/pages/dashboard-ecommerce.init.js"></script>
@@ -471,19 +681,17 @@
     <!-- Alertify.js Logout Confirmation Script -->
     <script>
         document.getElementById('logout-link').addEventListener('click', function (e) {
-            e.preventDefault(); // Prevent the default link behavior
-
-            // Show Alertify.js confirmation dialog
+            e.preventDefault();
             alertify.confirm(
-                'Logout Confirmation', // Dialog title
-                'Are you sure you want to logout?', // Dialog message
-                function () { // On OK (Confirm)
-                    window.location.href = document.getElementById('logout-link').href; // Redirect to logout URL
+                'Logout Confirmation',
+                'Are you sure you want to logout?',
+                function () {
+                    window.location.href = document.getElementById('logout-link').href;
                 },
-                function () { // On Cancel
+                function () {
                     alertify.error('Logout canceled.');
                 }
-            ).set('labels', { ok: 'Yes', cancel: 'No' }); // Customize button labels
+            ).set('labels', { ok: 'Yes', cancel: 'No' });
         });
     </script>
     <!-- Sidebar Toggle Script -->
@@ -496,7 +704,7 @@
             hamburgerBtn.addEventListener('click', function () {
                 sidebar.classList.toggle('collapsed');
                 layoutWrapper.classList.toggle('sidebar-collapsed');
-                this.classList.toggle('open'); // Toggle hamburger icon animation
+                this.classList.toggle('open');
             });
         });
     </script>

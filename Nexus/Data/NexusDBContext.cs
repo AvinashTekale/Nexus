@@ -9,6 +9,9 @@ namespace Nexus.Data
         public NexusDBContext(DbContextOptions<NexusDBContext> options) : base(options) { }
 
         // Existing Tables
+
+
+
         public DbSet<User> Users { get; set; }
         public DbSet<State> States { get; set; }
         public DbSet<City> Cities { get; set; }
@@ -30,6 +33,10 @@ namespace Nexus.Data
         //public DbSet<PartDetailEntity> PartDetails { get; set; }
         public DbSet<ContractOrderEntity> ContractOrders { get; set; }
         public DbSet<PMEntity> PMs { get; set; }
+     
+        public DbSet<PurchaseChildEntity> PurchaseChildren { get; set; }
+
+
         public DbSet<CalibrationEntity> Calibrations { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

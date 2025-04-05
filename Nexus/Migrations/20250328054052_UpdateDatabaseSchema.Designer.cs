@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Nexus.Data;
 
@@ -11,9 +12,11 @@ using Nexus.Data;
 namespace Nexus.Migrations
 {
     [DbContext(typeof(NexusDBContext))]
-    partial class NexusDBContextModelSnapshot : ModelSnapshot
+    [Migration("20250328054052_UpdateDatabaseSchema")]
+    partial class UpdateDatabaseSchema
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -681,70 +684,6 @@ namespace Nexus.Migrations
                     b.ToTable("Partners");
                 });
 
-            modelBuilder.Entity("Nexus.Entities.PurchaseChildEntity", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("CreatedBy")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("DateCreated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("DateModified")
-                        .HasColumnType("datetime2");
-
-                    b.Property<int>("ModelId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("ModifiedBy")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
-
-                    b.Property<int>("PurchaseId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("SalesContactId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("SerialNumber")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<int>("ServiceContactId")
-                        .HasColumnType("int");
-
-                    b.Property<DateTime>("WarrantyEnd")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("WarrantyStart")
-                        .HasColumnType("datetime2");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CategoryId");
-
-                    b.HasIndex("ModelId");
-
-                    b.HasIndex("PurchaseId");
-
-                    b.HasIndex("SalesContactId");
-
-                    b.HasIndex("ServiceContactId");
-
-                    b.ToTable("PurchaseChildren");
-                });
-
             modelBuilder.Entity("Nexus.Entities.PurchaseOrderEntity", b =>
                 {
                     b.Property<int>("Id")
@@ -752,6 +691,11 @@ namespace Nexus.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Category")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<int>("CreatedBy")
                         .HasColumnType("int");
@@ -761,6 +705,11 @@ namespace Nexus.Migrations
 
                     b.Property<DateTime?>("DateModified")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("Model")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<int?>("ModifiedBy")
                         .HasColumnType("int");
@@ -775,11 +724,35 @@ namespace Nexus.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
+
                     b.Property<DateTime>("PurchaseDate")
                         .HasColumnType("datetime2");
 
                     b.Property<decimal>("PurchasePrice")
                         .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("SalesContact")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("SerialNumber")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("ServiceContact")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime>("WarrantyEndDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("WarrantyStartDate")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -1104,49 +1077,6 @@ namespace Nexus.Migrations
                         .IsRequired();
 
                     b.Navigation("Hospital");
-                });
-
-            modelBuilder.Entity("Nexus.Entities.PurchaseChildEntity", b =>
-                {
-                    b.HasOne("Nexus.Entities.EquipmentCategory", "Category")
-                        .WithMany()
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Nexus.Entities.EquipmentModel", "Model")
-                        .WithMany()
-                        .HasForeignKey("ModelId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Nexus.Entities.PurchaseOrderEntity", "PurchaseOrder")
-                        .WithMany()
-                        .HasForeignKey("PurchaseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Nexus.Entities.ContactPerson", "SalesContact")
-                        .WithMany()
-                        .HasForeignKey("SalesContactId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Nexus.Entities.ContactPerson", "ServiceContact")
-                        .WithMany()
-                        .HasForeignKey("ServiceContactId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Category");
-
-                    b.Navigation("Model");
-
-                    b.Navigation("PurchaseOrder");
-
-                    b.Navigation("SalesContact");
-
-                    b.Navigation("ServiceContact");
                 });
 
             modelBuilder.Entity("Nexus.Entities.Hospital", b =>

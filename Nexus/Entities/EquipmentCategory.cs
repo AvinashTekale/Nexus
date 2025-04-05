@@ -6,6 +6,10 @@ namespace Nexus.Entities
 {
     public class EquipmentCategory : BaseEntity
     {
+
+        [Key]
+        public int Id { get; set; }
+
         [Required]
         [StringLength(100, ErrorMessage = "Name length can't exceed 100 characters.")]
         public string Name { get; set; }
